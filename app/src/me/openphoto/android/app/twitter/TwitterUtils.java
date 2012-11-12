@@ -10,18 +10,18 @@ import me.openphoto.android.app.util.LoadingControl;
 import oauth.signpost.OAuthProvider;
 import oauth.signpost.basic.DefaultOAuthProvider;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
+
+import org.holoeverywhere.app.Activity;
+
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
-import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
-
-import com.WazaBe.HoloEverywhere.sherlock.SActivity;
 
 /**
  * @author Eugene Popovich
@@ -206,8 +206,7 @@ public class TwitterUtils
                                     }
                                 }
                             });
-            dialogFragment.replace(((SActivity) activity)
-                    .getSupportFragmentManager());
+            dialogFragment.show(activity);
         } else
         {
             runOnSuccessAuthentication.run();

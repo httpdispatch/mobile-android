@@ -3,15 +3,17 @@ package me.openphoto.android.app;
 
 import me.openphoto.android.app.util.CommonUtils;
 import me.openphoto.android.app.util.LoginUtils;
+
+import org.holoeverywhere.app.Activity;
+
 import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.WazaBe.HoloEverywhere.sherlock.SActivity;
 import com.actionbarsherlock.view.Menu;
 
-public class AccountActivity extends SActivity
+public class AccountActivity extends Activity
 {
 
     private static final String TAG = AccountActivity.class.getSimpleName();

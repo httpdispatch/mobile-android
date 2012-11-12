@@ -15,6 +15,13 @@ import me.openphoto.android.app.util.CommonUtils;
 import me.openphoto.android.app.util.FileUtils;
 import me.openphoto.android.app.util.GuiUtils;
 import me.openphoto.android.app.util.ImageUtils;
+
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.app.Dialog;
+import org.holoeverywhere.widget.Switch;
+
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -29,11 +36,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.app.AlertDialog;
-import com.WazaBe.HoloEverywhere.app.Dialog;
-import com.WazaBe.HoloEverywhere.sherlock.SActivity;
-import com.WazaBe.HoloEverywhere.widget.Switch;
 import com.facebook.android.R;
 
 /**
@@ -41,7 +43,7 @@ import com.facebook.android.R;
  * 
  * @author Patrick Boos
  */
-public class UploadActivity extends SActivity {
+public class UploadActivity extends Activity {
     public static final String TAG = UploadActivity.class.getSimpleName();
 
     public static final String EXTRA_PENDING_UPLOAD_URI = "pending_upload_uri";
@@ -278,7 +280,7 @@ public class UploadActivity extends SActivity {
                                             startActivityForResult(intent, REQUEST_GALLERY);
                                         }
                                     });
-                    imageSelectionFragment.replace(getActivity().getSupportFragmentManager());
+                    imageSelectionFragment.show(getSupportActivity());
                 }
             }, 100);
         }

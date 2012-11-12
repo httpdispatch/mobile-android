@@ -11,6 +11,11 @@ import me.openphoto.android.app.service.UploaderService;
 import me.openphoto.android.app.twitter.TwitterUtils;
 import me.openphoto.android.app.util.GuiUtils;
 import me.openphoto.android.app.util.LoadingControl;
+
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.widget.Switch;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -21,9 +26,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.app.Activity;
-import com.WazaBe.HoloEverywhere.widget.Switch;
 import com.facebook.android.R;
 
 public class SyncUploadFragment extends CommonFragment
@@ -103,7 +105,7 @@ public class SyncUploadFragment extends CommonFragment
                     uploadSelectedFiles(false, checkFacebook);
                 }
             };
-            TwitterUtils.runAfterTwitterAuthentication(getActivity(),
+            TwitterUtils.runAfterTwitterAuthentication(getSupportActivity(),
                     runnable, runnable);
             return;
         }
@@ -118,7 +120,7 @@ public class SyncUploadFragment extends CommonFragment
                     uploadSelectedFiles(checkTwitter, false);
                 }
             };
-            FacebookUtils.runAfterFacebookAuthentication(getActivity(),
+            FacebookUtils.runAfterFacebookAuthentication(getSupportActivity(),
                     runnable, runnable);
             return;
         }

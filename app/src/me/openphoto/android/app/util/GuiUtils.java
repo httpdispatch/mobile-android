@@ -11,7 +11,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
-import com.WazaBe.HoloEverywhere.widget.Toast;
+import org.holoeverywhere.widget.Toast;
 import com.bugsense.trace.BugSenseHandler;
 
 /**

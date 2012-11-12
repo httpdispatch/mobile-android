@@ -5,16 +5,22 @@
         android:id="@+id/dummy_menu"
         android:title=""
         android:enabled="false"
-        android:showAsAction="always"/>
+        android:showAsAction="always"
+        android:menuCategory="container"
+          android:orderInCategory="2"/>
     <item
         android:id="@+id/menu_refresh"
         android:icon="@drawable/ic_menu_refresh"
         android:title="@string/menu_refresh"
-        android:showAsAction="always"/>
+        android:showAsAction="always"
+        android:menuCategory="container"
+          android:orderInCategory="2"/>
     <item
         android:id="@+id/menu_camera"
         android:icon="@drawable/button_camera"
         android:showAsAction="always"
+        android:menuCategory="container"
+          android:orderInCategory="3"
         />
     <item
         android:id="@+id/menu_settings"

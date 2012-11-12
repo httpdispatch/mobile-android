@@ -20,6 +20,10 @@ import me.openphoto.android.app.ui.adapter.EndlessAdapter;
 import me.openphoto.android.app.util.CommonUtils;
 import me.openphoto.android.app.util.GuiUtils;
 import me.openphoto.android.app.util.LoadingControl;
+
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -37,8 +41,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.app.Activity;
 import com.actionbarsherlock.view.ContextMenu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -201,7 +203,7 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
     {
         if (activePhoto != null)
         {
-            TwitterUtils.runAfterTwitterAuthentication(getActivity(),
+            TwitterUtils.runAfterTwitterAuthentication(getSupportActivity(),
                     new Runnable()
                     {
 
@@ -212,8 +214,7 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
                             {
                                 TwitterFragment twitterDialog = new TwitterFragment();
                                 twitterDialog.setPhoto(activePhoto);
-                                twitterDialog.replace(getActivity()
-                                        .getSupportFragmentManager());
+                                twitterDialog.show(getSupportActivity());
                             } catch (Exception ex)
                             {
                                 GuiUtils.error(TAG, null, ex);
@@ -227,7 +228,7 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
     {
         if (activePhoto != null)
         {
-            FacebookUtils.runAfterFacebookAuthentication(getActivity(),
+            FacebookUtils.runAfterFacebookAuthentication(getSupportActivity(),
                     new Runnable()
                     {
 
@@ -238,7 +239,7 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
                             {
                                 FacebookFragment facebookDialog = new FacebookFragment();
                                 facebookDialog.setPhoto(activePhoto);
-                                facebookDialog.replace(getActivity()
+                                facebookDialog.show(getSupportActivity()
                                         .getSupportFragmentManager());
                             } catch (Exception ex)
                             {

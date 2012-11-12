@@ -3,10 +3,12 @@ package me.openphoto.android.app;
 
 import me.openphoto.android.app.facebook.FacebookProvider;
 import me.openphoto.android.app.util.GuiUtils;
+
+import org.holoeverywhere.app.Application;
+import org.holoeverywhere.app.Application.Config.PreferenceImpl;
+
 import android.content.Context;
 
-import com.WazaBe.HoloEverywhere.app.Application;
-import com.WazaBe.HoloEverywhere.app.Application.Config.PreferenceImpl;
 import com.bugsense.trace.BugSenseHandler;
 import com.facebook.android.R;
 
@@ -33,7 +35,7 @@ public class OpenPhotoApplication extends Application
         super.onCreate();
 
         GuiUtils.setup();
-        getConfig().setPreferenceImpl(PreferenceImpl.XML);
+        getConfig().setPreferenceImpl(PreferenceImpl.JSON);
         
         String bugSenseApiKey = getString(R.string.bugsense_api_key);
         if (bugSenseApiKey != null && bugSenseApiKey.length() > 0)

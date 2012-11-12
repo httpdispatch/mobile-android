@@ -28,8 +28,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.sherlock.SActivity;
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
 import com.polites.android.GestureImageView;
 
 /**
@@ -43,7 +43,7 @@ import com.polites.android.GestureImageView;
  *          03.10.2012 <br>
  *          - added initial support for album photos filter
  */
-public class PhotoDetailsActivity extends SActivity {
+public class PhotoDetailsActivity extends Activity {
 
     public static final String EXTRA_PHOTO = "EXTRA_PHOTO";
 

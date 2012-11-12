@@ -24,12 +24,12 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
 
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.sherlock.SActivity;
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
 import com.bugsense.trace.BugSenseHandler;
 import com.facebook.android.R;
 
-public class SelectTagsActivity extends SActivity {
+public class SelectTagsActivity extends Activity {
 
     public static final String TAG = SelectTagsActivity.class.getSimpleName();
 

@@ -4,13 +4,15 @@ package me.openphoto.android.app;
 import me.openphoto.android.app.util.CommonUtils;
 import me.openphoto.android.app.util.GuiUtils;
 import me.openphoto.android.app.util.Utils;
+
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
+import org.holoeverywhere.app.Fragment;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.app.Activity;
-import com.WazaBe.HoloEverywhere.sherlock.SFragment;
 
 /**
  * Common parent fragment. All the tab fragments under MainActivity should to
@@ -18,7 +20,7 @@ import com.WazaBe.HoloEverywhere.sherlock.SFragment;
  * 
  * @author Eugene Popovich
  */
-public class CommonFragment extends SFragment
+public class CommonFragment extends Fragment
 {
     static final String TAG = CommonFragment.class.getSimpleName();
 

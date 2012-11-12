@@ -11,6 +11,10 @@ import me.openphoto.android.app.ui.adapter.PhotosEndlessAdapter;
 import me.openphoto.android.app.util.ImageFlowUtils;
 import me.openphoto.android.app.util.LoadingControl;
 import me.openphoto.android.app.util.Utils;
+
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,9 +25,6 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ListView;
-
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.app.Activity;
 
 public class GalleryFragment extends CommonFrargmentWithImageWorker implements Refreshable
 {

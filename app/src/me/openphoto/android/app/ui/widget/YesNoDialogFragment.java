@@ -4,19 +4,20 @@ package me.openphoto.android.app.ui.widget;
 import java.io.Serializable;
 
 import me.openphoto.android.app.R;
+
+import org.holoeverywhere.app.AlertDialog;
+import org.holoeverywhere.app.Dialog;
+import org.holoeverywhere.app.DialogFragment;
+
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import com.WazaBe.HoloEverywhere.app.AlertDialog;
-import com.WazaBe.HoloEverywhere.app.Dialog;
-import com.WazaBe.HoloEverywhere.sherlock.SDialogFragment;
 
 /**
  * Basic Yes/No dialog fragment
  * 
  * @author Eugene Popovich
  */
-public class YesNoDialogFragment extends SDialogFragment
+public class YesNoDialogFragment extends DialogFragment
 {
     public static interface YesNoButtonPressedHandler extends Serializable
     {

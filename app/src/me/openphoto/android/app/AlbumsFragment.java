@@ -11,6 +11,10 @@ import me.openphoto.android.app.ui.adapter.EndlessAdapter;
 import me.openphoto.android.app.util.GalleryOpenControl;
 import me.openphoto.android.app.util.GuiUtils;
 import me.openphoto.android.app.util.LoadingControl;
+
+import org.holoeverywhere.LayoutInflater;
+import org.holoeverywhere.app.Activity;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -20,9 +24,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.WazaBe.HoloEverywhere.LayoutInflater;
-import com.WazaBe.HoloEverywhere.app.Activity;
 
 /**
  * The fragment which displays albums list
