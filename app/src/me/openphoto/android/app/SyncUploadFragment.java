@@ -24,6 +24,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 
 import com.facebook.android.R;
@@ -37,6 +39,20 @@ public class SyncUploadFragment extends CommonFragment
     Switch privateSwitch;
     Switch twitterSwitch;
     Switch facebookSwitch;
+
+    static SyncUploadFragment instance;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        instance = this;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        instance = null;
+    }
 
     @Override
     public void onAttach(Activity activity)
@@ -88,13 +104,32 @@ public class SyncUploadFragment extends CommonFragment
         privateSwitch = (Switch) v.findViewById(R.id.private_switch);
         twitterSwitch = (Switch) v.findViewById(R.id.twitter_switch);
         facebookSwitch = (Switch) v.findViewById(R.id.facebook_switch);
+
+        privateSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                reinitShareSwitches(!isChecked);
+            }
+        });
+        reinitShareSwitches();
     }
 
+    void reinitShareSwitches()
+    {
+        reinitShareSwitches(!privateSwitch.isChecked());
+    }
+
+    void reinitShareSwitches(boolean enabled)
+    {
+        twitterSwitch.setEnabled(enabled);
+        facebookSwitch.setEnabled(enabled);
+    }
     void uploadSelectedFiles(
             final boolean checkTwitter,
             final boolean checkFacebook)
     {
-        if (checkTwitter && twitterSwitch.isChecked())
+        if (checkTwitter && twitterSwitch.isEnabled() && twitterSwitch.isChecked())
         {
             Runnable runnable = new Runnable()
             {
@@ -102,14 +137,14 @@ public class SyncUploadFragment extends CommonFragment
                 @Override
                 public void run()
                 {
-                    uploadSelectedFiles(false, checkFacebook);
+                    instance.uploadSelectedFiles(false, checkFacebook);
                 }
             };
             TwitterUtils.runAfterTwitterAuthentication(getSupportActivity(),
                     runnable, runnable);
             return;
         }
-        if (checkFacebook && facebookSwitch.isChecked())
+        if (checkFacebook && facebookSwitch.isEnabled() && facebookSwitch.isChecked())
         {
             Runnable runnable = new Runnable()
             {
@@ -117,7 +152,7 @@ public class SyncUploadFragment extends CommonFragment
                 @Override
                 public void run()
                 {
-                    uploadSelectedFiles(checkTwitter, false);
+                    instance.uploadSelectedFiles(checkTwitter, false);
                 }
             };
             FacebookUtils.runAfterFacebookAuthentication(getSupportActivity(),

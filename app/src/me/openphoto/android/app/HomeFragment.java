@@ -1,6 +1,7 @@
 
 package me.openphoto.android.app;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Stack;
@@ -59,10 +60,18 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
     private ListView list;
     private ReturnSizes returnSizes;
 
+    static HomeFragment currentInstance;
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        currentInstance = this;
+    }
+    @Override
+    public void onDestroy() {
+        currentInstance = null;
+        super.onDestroy();
     }
 
     @Override
@@ -204,23 +213,7 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
         if (activePhoto != null)
         {
             TwitterUtils.runAfterTwitterAuthentication(getSupportActivity(),
-                    new Runnable()
-                    {
-
-                        @Override
-                        public void run()
-                        {
-                            try
-                            {
-                                TwitterFragment twitterDialog = new TwitterFragment();
-                                twitterDialog.setPhoto(activePhoto);
-                                twitterDialog.show(getSupportActivity());
-                            } catch (Exception ex)
-                            {
-                                GuiUtils.error(TAG, null, ex);
-                            }
-                        }
-                    });
+                    new TwitterShareRunnable(activePhoto));
         }
     }
 
@@ -229,24 +222,8 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
         if (activePhoto != null)
         {
             FacebookUtils.runAfterFacebookAuthentication(getSupportActivity(),
-                    new Runnable()
-                    {
-
-                        @Override
-                        public void run()
-                        {
-                            try
-                            {
-                                FacebookFragment facebookDialog = new FacebookFragment();
-                                facebookDialog.setPhoto(activePhoto);
-                                facebookDialog.show(getSupportActivity()
-                                        .getSupportFragmentManager());
-                            } catch (Exception ex)
-                            {
-                                GuiUtils.error(TAG, null, ex);
-                            }
-                        }
-                    });
+                    new FacebookShareRunnable(
+                    activePhoto));
         }
     }
 
@@ -444,10 +421,15 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
                 public void onClick(View v)
                 {
                     activePhoto = photo;
-                    registerForContextMenu(v);
-                    v.showContextMenu();
-                    // getSupportActivity().openContextMenu(v);
-                    unregisterForContextMenu(v);
+                    if (photo.isPrivate())
+                    {
+                        GuiUtils.alert(R.string.share_private_photo_forbidden);
+                    } else
+                    {
+                        registerForContextMenu(v);
+                        v.showContextMenu();
+                        unregisterForContextMenu(v);
+                    }
                 }
             });
             return convertView;
@@ -531,4 +513,55 @@ public class HomeFragment extends CommonFrargmentWithImageWorker implements Refr
         }
     }
 
+    static class FacebookShareRunnable implements Runnable, Serializable
+    {
+        private static final long serialVersionUID = 1L;
+
+        Photo photo;
+
+        FacebookShareRunnable(Photo photo)
+        {
+            this.photo = photo;
+        }
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                FacebookFragment facebookDialog = new FacebookFragment();
+                facebookDialog.setPhoto(photo);
+                facebookDialog.show(currentInstance.getSupportActivity());
+            } catch (Exception ex)
+            {
+                GuiUtils.error(TAG, null, ex);
+            }
+        }
+    }
+
+    static class TwitterShareRunnable implements Runnable, Serializable
+    {
+        private static final long serialVersionUID = 1L;
+
+        Photo photo;
+
+        TwitterShareRunnable(Photo photo)
+        {
+            this.photo = photo;
+        }
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                TwitterFragment twitterDialog = new TwitterFragment();
+                twitterDialog.setPhoto(photo);
+                twitterDialog.show(currentInstance.getSupportActivity());
+            } catch (Exception ex)
+            {
+                GuiUtils.error(TAG, null, ex);
+            }
+        }
+    }
 }

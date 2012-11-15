@@ -35,7 +35,7 @@ public class OpenPhotoApplication extends Application
         super.onCreate();
 
         GuiUtils.setup();
-        getConfig().setPreferenceImpl(PreferenceImpl.JSON);
+        getConfig().setPreferenceImpl(PreferenceImpl.XML);
         
         String bugSenseApiKey = getString(R.string.bugsense_api_key);
         if (bugSenseApiKey != null && bugSenseApiKey.length() > 0)
